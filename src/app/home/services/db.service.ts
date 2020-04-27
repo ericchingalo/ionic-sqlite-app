@@ -49,7 +49,7 @@ export class DbService {
       .subscribe((data) => {
         this.sqlPorter
           .importSqlToDb(this.storage, data)
-          .then((_) => {
+          .then(() => {
             this.getAllSongs();
             this.isDbReady.next(true);
           })

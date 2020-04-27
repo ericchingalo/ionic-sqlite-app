@@ -1,9 +1,43 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Songs
+      Musci App
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding> </ion-content>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add a song</ion-card-title>
+      <ion-card-subtitle>Fill the form below</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Artist</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Song</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-button expand="block" color="dark">Add Song</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <section padding>
+    <h2>Your songs</h2>
+    <ion-list>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-icon name="musical-notes" size="large"></ion-icon>
+        </ion-avatar>
+        <ion-label>
+          <h3>I'll keep on</h3>
+          <p>NF</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </section>
+</ion-content>
