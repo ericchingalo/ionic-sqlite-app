@@ -14,15 +14,15 @@
     </ion-card-header>
 
     <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Artist</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Song</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-      <ion-button expand="block" color="dark">Add Song</ion-button>
+      <form [formGroup]="songFormGroup" (ngSubmit)="addSong()">
+        <ion-item *ngFor="let input of songFormData.inputs">
+          <ion-label position="floating">{{input.label}}</ion-label>
+          <ion-input [formControlName]="input.formControlName"></ion-input>
+        </ion-item>
+        <ion-button expand="block" color="dark" type="submit"
+          >Add Song</ion-button
+        >
+      </form>
     </ion-card-content>
   </ion-card>
 
