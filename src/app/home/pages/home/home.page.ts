@@ -43,4 +43,8 @@ export class HomePage implements OnInit {
       );
     });
   }
+
+  addSong() {
+    console.log(this.songFormGroup.value);
+  }
 }
