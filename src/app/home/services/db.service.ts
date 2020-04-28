@@ -59,7 +59,7 @@ export class DbService {
 
   getAllSongs() {
     return this.storage
-      .executeSql('SELECT * FROM songtable', [])
+      .executeSql('SELECT * FROM songtable;', [])
       .then((res) => {
         const songs: Song[] = [];
         if (res.rows.length > 0) {
@@ -73,7 +73,6 @@ export class DbService {
         }
 
         this.songsList.next(songs);
-        return this.songsList.value;
       });
   }
 
@@ -88,20 +87,24 @@ export class DbService {
   }
 
   addSong(song: Song) {
+    console.log(song);
     const data = [song.songName, song.artistName];
     return this.storage
       .executeSql(
-        'INSERT INTO songtable (songName. artistName) VALUES (?, ?)',
+        'INSERT INTO songtable (songName, artistName) VALUES (?, ?);',
         data
       )
-      .then(() => this.getAllSongs());
+      .then(
+        () => this.getAllSongs(),
+        (error) => console.error(error)
+      );
   }
 
   updateSong(id: string, song: Song) {
     const data = [song.songName, song.artistName];
     return this.storage
       .executeSql(
-        `UPDATE songtable SET songName = ?, artistName = ? WHERE id = ${id}`,
+        `UPDATE songtable SET songName = ?, artistName = ? WHERE id = ${id};`,
         data
       )
       .then(() => this.getAllSongs());
@@ -109,7 +112,10 @@ export class DbService {
 
   deleteSong(id: string) {
     return this.storage
-      .executeSql('DELETE FROM songtable WHERE id = ?', [id])
-      .then(() => this.getAllSongs());
+      .executeSql('DELETE FROM songtable WHERE id = ?;', [id])
+      .then(
+        () => this.getAllSongs(),
+        (error) => console.error(error)
+      );
   }
 }
