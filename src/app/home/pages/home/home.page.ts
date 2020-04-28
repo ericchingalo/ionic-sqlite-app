@@ -74,7 +74,7 @@ export class HomePage implements OnInit {
       );
   }
 
-  deleteSong(e, id) {
+  deleteSong(e, id: string) {
     if (e) {
       e.stopPropagation();
     }
