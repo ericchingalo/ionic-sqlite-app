@@ -54,6 +54,8 @@
         </ion-buttons>
       </ion-item>
     </ion-list>
-    <ion-text *ngIf="!songs">No Song Available. Add one</ion-text>
+    <ion-text *ngIf="!songs || songs.length < 1"
+      >No Song Available. Add one</ion-text
+    >
   </section>
 </ion-content>

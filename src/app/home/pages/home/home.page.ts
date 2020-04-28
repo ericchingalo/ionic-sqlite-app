@@ -9,7 +9,6 @@ import { DbService } from '../../services/db.service';
 import { ToastController } from '@ionic/angular';
 import * as _ from 'lodash';
 import { Song } from '../../models/song.model';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-home',
