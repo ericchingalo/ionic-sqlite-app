@@ -41,6 +41,17 @@
           <h3>{{song.songName}}</h3>
           <p>{{song.artistName}}</p>
         </ion-label>
+        <ion-buttons slot="end">
+          <ion-button
+            color="dark"
+            size="large"
+            (click)="deleteSong($event, song.id)"
+            ><ion-icon name="trash"></ion-icon
+          ></ion-button>
+          <ion-button color="dark" (click)="editSong($event, song.id)"
+            ><ion-icon name="create"></ion-icon
+          ></ion-button>
+        </ion-buttons>
       </ion-item>
     </ion-list>
     <ion-text *ngIf="!songs">No Song Available. Add one</ion-text>
