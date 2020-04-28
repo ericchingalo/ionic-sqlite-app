@@ -30,9 +30,9 @@
     </ion-card-content>
   </ion-card>
 
-  <section padding *ngIf="songs">
+  <section padding>
     <h2>Your songs</h2>
-    <ion-list>
+    <ion-list *ngIf="songs">
       <ion-item *ngFor="let song of songs">
         <ion-avatar slot="start">
           <ion-icon name="musical-notes" size="large"></ion-icon>
@@ -43,5 +43,6 @@
         </ion-label>
       </ion-item>
     </ion-list>
+    <ion-text *ngIf="!songs">No Song Available. Add one</ion-text>
   </section>
 </ion-content>
