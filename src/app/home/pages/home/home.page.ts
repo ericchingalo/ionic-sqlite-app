@@ -8,6 +8,7 @@ import {
 import { DbService } from '../../services/db.service';
 import { ToastController } from '@ionic/angular';
 import * as _ from 'lodash';
+import { Song } from '../../models/song.model';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ import * as _ from 'lodash';
 export class HomePage implements OnInit {
   songFormGroup: FormGroup;
   songFormData: any;
+  songs: Song[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -32,6 +34,13 @@ export class HomePage implements OnInit {
       ],
     };
     this.generateEmptyForm();
+    this.dbService.dbState().subscribe((res) => {
+      if (res) {
+        this.dbService.getAllSongs().then(async (songs: Song[]) => {
+          this.songs = songs;
+        });
+      }
+    });
   }
 
   generateEmptyForm() {

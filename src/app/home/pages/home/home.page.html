@@ -19,23 +19,27 @@
           <ion-label position="floating">{{input.label}}</ion-label>
           <ion-input [formControlName]="input.formControlName"></ion-input>
         </ion-item>
-        <ion-button expand="block" color="dark" type="submit"
+        <ion-button
+          expand="block"
+          color="dark"
+          type="submit"
+          [disabled]="!songFormGroup.valid"
           >Add Song</ion-button
         >
       </form>
     </ion-card-content>
   </ion-card>
 
-  <section padding>
+  <section padding *ngIf="songs">
     <h2>Your songs</h2>
     <ion-list>
-      <ion-item>
+      <ion-item *ngFor="let song of songs">
         <ion-avatar slot="start">
           <ion-icon name="musical-notes" size="large"></ion-icon>
         </ion-avatar>
         <ion-label>
-          <h3>I'll keep on</h3>
-          <p>NF</p>
+          <h3>{{song.songName}}</h3>
+          <p>{{song.artistName}}</p>
         </ion-label>
       </ion-item>
     </ion-list>

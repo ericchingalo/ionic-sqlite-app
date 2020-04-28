@@ -48,7 +48,7 @@ export class DbService {
       .get('assets/dump.sql', { responseType: 'text' })
       .subscribe((data) => {
         this.sqlPorter
-          .importSqlToDb(this.storage, data)
+          .importSqlToDb(this.storage._objectInstance, data)
           .then(() => {
             this.getAllSongs();
             this.isDbReady.next(true);
@@ -58,20 +58,23 @@ export class DbService {
   }
 
   getAllSongs() {
-    return this.storage.executeSql('SELECT * FROM songtable').then((res) => {
-      const songs: Song[] = [];
-      if (res.rows.length > 0) {
-        for (let i = 0; i < res.rows.length; i++) {
-          songs.push({
-            id: res.rows.item(i).id,
-            artistName: res.rows.item(i).artistName,
-            songName: res.rows.item(i).songName,
-          });
+    return this.storage
+      .executeSql('SELECT * FROM songtable', [])
+      .then((res) => {
+        const songs: Song[] = [];
+        if (res.rows.length > 0) {
+          for (let i = 0; i < res.rows.length; i++) {
+            songs.push({
+              id: res.rows.item(i).id,
+              artistName: res.rows.item(i).artistName,
+              songName: res.rows.item(i).songName,
+            });
+          }
         }
-      }
 
-      this.songsList.next(songs);
-    });
+        this.songsList.next(songs);
+        return this.songsList.value;
+      });
   }
 
   getSong(id: string): Promise<Song> {
