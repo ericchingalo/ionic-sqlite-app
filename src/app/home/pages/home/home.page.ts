@@ -96,4 +96,17 @@ export class HomePage implements OnInit {
     }
     console.log('ID:::', id);
   }
+
+  clearAllSongs(e) {
+    this.dbService.deleteAllSongs().then(
+      () => {},
+      async () => {
+        const toast = await this.toast.create({
+          message: 'Failed to Delete All',
+          duration: 2500,
+        });
+        toast.present();
+      }
+    );
+  }
 }

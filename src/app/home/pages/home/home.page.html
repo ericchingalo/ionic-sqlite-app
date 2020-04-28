@@ -46,7 +46,8 @@
             color="dark"
             size="large"
             (click)="deleteSong($event, song.id)"
-            ><ion-icon name="trash"></ion-icon
+          >
+            <ion-icon name="close"></ion-icon
           ></ion-button>
           <ion-button color="dark" (click)="editSong($event, song.id)"
             ><ion-icon name="create"></ion-icon
@@ -58,4 +59,15 @@
       >No Song Available. Add one</ion-text
     >
   </section>
+
+  <ion-fab
+    vertical="bottom"
+    horizontal="end"
+    slot="fixed"
+    *ngIf="songs && songs.length > 0"
+  >
+    <ion-fab-button (click)="clearAllSongs($event)" color="dark">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

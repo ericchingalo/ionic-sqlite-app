@@ -7,6 +7,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import * as _ from 'lodash';
 
 import { Song } from '../models/song.model';
+import { generateId } from '../../helpers/id-generator.helper';
 
 @Injectable({
   providedIn: 'root',
@@ -88,10 +89,10 @@ export class DbService {
 
   addSong(song: Song) {
     console.log(song);
-    const data = [song.songName, song.artistName];
+    const data = [generateId(), song.songName, song.artistName];
     return this.storage
       .executeSql(
-        'INSERT INTO songtable (songName, artistName) VALUES (?, ?);',
+        'INSERT INTO songtable (id, songName, artistName) VALUES (?, ?, ?);',
         data
       )
       .then(
@@ -117,5 +118,12 @@ export class DbService {
         () => this.getAllSongs(),
         (error) => console.error(error)
       );
+  }
+
+  deleteAllSongs() {
+    return this.storage.executeSql('DELETE FROM songtable;', []).then(
+      () => this.getAllSongs(),
+      (error) => console.error(error)
+    );
   }
 }
