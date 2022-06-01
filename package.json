@@ -29,7 +29,7 @@
     "cordova-sqlite-storage": "^5.0.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
-    "sharp": "^0.23.4",
+    "sharp": "^0.30.5",
     "tslib": "^1.9.0",
     "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1",
     "zone.js": "~0.9.1"
